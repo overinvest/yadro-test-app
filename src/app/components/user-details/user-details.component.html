@@ -1,0 +1,51 @@
+<div class="user-details-container">
+  <div class="header">
+    <button nz-button nzType="default" [routerLink]="['/users']">
+      <span nz-icon nzType="arrow-left" nzTheme="outline"></span>
+      Назад к списку
+    </button>
+    <h2>Детальная информация о пользователе</h2>
+  </div>
+
+  <nz-spin [nzSpinning]="loading" ngSkipHydration>
+    <div *ngIf="user" class="user-details-content">
+      <nz-card ngSkipHydration>
+        <nz-descriptions ngSkipHydration nzTitle="Основная информация" nzBordered [nzColumn]="2">
+          <nz-descriptions-item nzTitle="ID">{{ user.id }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Имя">{{ user.name }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Имя пользователя">{{ user.username }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Email">{{ user.email }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Телефон">{{ user.phone }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Сайт">{{ user.website }}</nz-descriptions-item>
+        </nz-descriptions>
+
+        <nz-descriptions *ngIf="user.address" ngSkipHydration nzTitle="Адрес" nzBordered [nzColumn]="2" class="section">
+          <nz-descriptions-item nzTitle="Улица">{{ user.address.street }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Квартира/офис">{{ user.address.suite }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Город">{{ user.address.city }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Индекс">{{ user.address.zipcode }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Координаты" [nzSpan]="2">
+            Широта: {{ user.address.geo.lat }}, Долгота: {{ user.address.geo.lng }}
+          </nz-descriptions-item>
+        </nz-descriptions>
+
+        <nz-descriptions *ngIf="user.company" ngSkipHydration nzTitle="Компания" nzBordered [nzColumn]="1" class="section">
+          <nz-descriptions-item nzTitle="Название">{{ user.company.name }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Слоган">{{ user.company.catchPhrase }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Сфера деятельности">{{ user.company.bs }}</nz-descriptions-item>
+        </nz-descriptions>
+
+        <div class="actions">
+          <button nz-button nzType="primary" (click)="goToEditUser()">
+            <span nz-icon nzType="edit" nzTheme="outline"></span>
+            Редактировать
+          </button>
+          <button nz-button nzType="primary" nzDanger (click)="deleteUser()">
+            <span nz-icon nzType="delete" nzTheme="outline"></span>
+            Удалить
+          </button>
+        </div>
+      </nz-card>
+    </div>
+  </nz-spin>
+</div>

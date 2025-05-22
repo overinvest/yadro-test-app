@@ -1,0 +1,64 @@
+<div class="user-list-container">
+  <div class="header">
+    <h2>Список пользователей</h2>
+    <button nz-button nzType="primary" [routerLink]="['/users/new']">
+      <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+      <span>Добавить пользователя</span>
+    </button>
+  </div>
+
+  <div class="filter-row">
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input type="text" nz-input placeholder="Поиск по имени или email" [(ngModel)]="searchValue" (ngModelChange)="onSearch()"/>
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <span nz-icon nzType="search"></span>
+    </ng-template>
+  </div>
+
+  <nz-table 
+    ngSkipHydration
+    #userTable 
+    [nzData]="filteredUsers"
+    [nzLoading]="loading"
+    [nzShowPagination]="true"
+    [nzPageSize]="pageSize"
+    [nzPageSizeOptions]="[5, 10, 20, 50]"
+    [nzShowSizeChanger]="true"
+    [nzShowQuickJumper]="true"
+    [nzTotal]="filteredUsers.length"
+    [nzFrontPagination]="true"
+    [nzBordered]="true"
+    (nzPageSizeChange)="pageSizeChange($event)">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Имя пользователя</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userTable.data">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td class="action-buttons">
+          <button nz-button nzType="primary" [routerLink]="['/users', user.id]">
+            <span nz-icon nzType="eye" nzTheme="outline"></span>
+          </button>
+          <button nz-button nzType="default" [routerLink]="['/users/edit', user.id]">
+            <span nz-icon nzType="edit" nzTheme="outline"></span>
+          </button>
+          <button nz-button nzType="primary" nzDanger (click)="deleteUser(user.id)">
+            <span nz-icon nzType="delete" nzTheme="outline"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

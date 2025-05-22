@@ -1,0 +1,122 @@
+.user-details-container {
+  padding: 24px;
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    
+    button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--bg-input);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--rounded-md);
+      padding: 0.625rem 1.25rem;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: var(--bg-hover);
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+    }
+    
+    h2 {
+      margin: 0 0 0 1rem;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+    }
+  }
+  
+  .user-details-content {
+    ::ng-deep {
+      nz-card {
+        .ant-card {
+          border-radius: var(--rounded-lg);
+          box-shadow: var(--shadow);
+          border: 1px solid var(--border-color);
+          background-color: var(--bg-card);
+        }
+      }
+      
+      nz-descriptions {
+        margin-bottom: 1.5rem;
+        
+        .ant-descriptions-title {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: var(--text-primary);
+          margin-bottom: 1rem;
+        }
+        
+        .ant-descriptions-row {
+          .ant-descriptions-item-label {
+            background-color: var(--bg-hover);
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+          }
+          
+          .ant-descriptions-item-content {
+            padding: 0.875rem 1rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+          }
+        }
+      }
+    }
+    
+    .section {
+      margin-top: 2rem;
+    }
+    
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      justify-content: flex-end;
+      
+      button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: none;
+        border-radius: var(--rounded-md);
+        padding: 0.625rem 1.25rem;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+        color: white;
+        
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        &:first-child {
+          background-color: var(--color-primary);
+          
+          &:hover {
+            background-color: var(--color-primary-hover);
+          }
+        }
+        
+        &:last-child {
+          background-color: var(--color-danger);
+          
+          &:hover {
+            background-color: var(--color-danger-hover);
+          }
+        }
+      }
+    }
+  }
+}
